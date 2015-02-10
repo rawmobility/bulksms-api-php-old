@@ -1,0 +1,13 @@
+{
+    "name": "rawmobility/bulksms-php-api",
+    "description": "Blender Bulk SMS Platform - Send SMS via PHP",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Asaf Shamir",
+            "email": "asaf@rawmobility.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
