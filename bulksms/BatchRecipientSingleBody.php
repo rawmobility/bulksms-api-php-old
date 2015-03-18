@@ -9,6 +9,11 @@ class BatchRecipientSingleBody {
     private $recipient;
 
 
+    function __construct($type, $recipient) {
+        $this->setType($type);
+        $this->recipient = $recipient;
+    }
+
     public function BatchRecipientSingleBody($type, $recipient) {
         $this->setType($type);
         $this->recipient = $recipient;

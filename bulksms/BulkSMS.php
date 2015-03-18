@@ -34,6 +34,10 @@ class BulkSMS {
         $this->session = BulkSMS::xpathValue($doc, "/xaresponse/session");
     }
 
+    public function getSession() {
+        return $this->session;
+    }
+    
     /**
      * Get all routes/pricing
      * @return array of UserRoutePricing objects
@@ -92,6 +96,19 @@ class BulkSMS {
         }
         throw new Exception("Unable to find route id for {$countryName}, please contact your reseller for additional coverage");
     }
+    
+    public function getBalance() {
+        $url = BulkSMS::$url . $this->session . "/entity/user.User/current/profile/basic";
+        $xml = $this->getRequest($url);
+        $doc = new DOMDocument();
+        $doc->loadXML($xml);
+
+        $xpath = new DOMXPath($doc);
+        $query = "/xaresponse/user/credit/balance/amount";
+        $balance = $this->xpathValue($doc, $query);
+
+        return floatval($balance);
+    }
 
     public function getRequest($url) {
 //        echo "URL: " . $url;
@@ -145,6 +162,7 @@ class BulkSMS {
 
     public function sendSingle($originator, $recipient, $body, $routeId, $reference = null) {
         $recipient = new BatchRecipientMultiBody($originator, $recipient, $body, $reference, $routeId);
+
         $dom = new DOMDocument('1.0', "UTF-8");
         $node = $dom->importNode($recipient->toXml("message"), true);
 

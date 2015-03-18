@@ -9,7 +9,14 @@ class BatchRecipientMultiBody  {
 	private $reference;
 	private $routeId;
 
-
+    function __construct($originator = null, $recipient = null, $body = null, $reference = null, $routeId = null) {
+        $this->originator = $originator;
+        $this->recipient = $recipient;
+        $this->body = $body;
+        $this->reference = $reference;
+        $this->routeId = $routeId;
+    }
+    
 	public function BatchRecipientMultiBody($originator = null, $recipient = null, $body = null, $reference = null, $routeId = null) {
 		$this->originator = $originator;
 		$this->recipient = $recipient;

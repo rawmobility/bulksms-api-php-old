@@ -103,3 +103,15 @@ $receipt = new Blender\Client\DeliveryReceipt($xml);
 $myref = $receipt->getClientReference();
 $status = $receipt->getStatus();
 ```
+
+### Check Balance
+
+```php
+require_once("bulksms/BulkSMS.php");
+# Create client instance
+$bulksms = new Blender\Client\BulkSMS();
+# Login to gateway
+$bulksms->login($USERNAME, $PASSWORD);
+# Get Balance
+$balance = $bulksms->getBalance();
+```
